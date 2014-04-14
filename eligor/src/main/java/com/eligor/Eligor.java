@@ -14,6 +14,8 @@
  */
 package com.eligor;
 
+import org.jetbrains.annotations.Nullable;
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -64,7 +66,7 @@ public final class Eligor {
         mSyncManagers.put(manager.getAuthority(), manager);
     }
 
-    public IPeriodicSyncManager getPeriodicSyncManager(String authority) {
+    public @Nullable IPeriodicSyncManager getPeriodicSyncManager(String authority) {
         return mSyncManagers.get(authority);
     }
 
