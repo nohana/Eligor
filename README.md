@@ -3,6 +3,59 @@ Eligor
 
 Thin wrapper for managing periodic sync with ContentResolver.
 
+## Usage
+
+### Initialize
+
+Initialize `Eligor` at `Application#onCreate()` in your implementation.
+
+```java
+public class MyApp extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        Eligor.initialize(1000); // sync period is set by default as every 1sec
+
+        Eligor.getInstance().registerPeriodicSyncManager(new PeriodicSyncManager(new Account("account_name", "account_type"), "authority")); // register manager
+    }
+
+    @Override
+    public void onTerminate() {
+        Eligor.destroy();
+        super.onTerminate();
+    }
+}
+```
+
+### Add manager
+
+```java
+public class MyActivity extends Activity {
+    private final Eligor mEligor = Eligor.getInstance(); // you may inject the instance by DI container using Provider.
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_sample)
+    }
+
+    public void onSyncButtonClick(View view) {
+        mEligor.requestSync(); // start provider sync manually
+    }
+}
+```
+
+## Download
+
+Via gradle.
+
+```groovy
+dependencies {
+    compile 'jp.co.nohana:Eligor:1.0.0'
+}
+```
+
 ## License
 
 ```
