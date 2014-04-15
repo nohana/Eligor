@@ -7,7 +7,7 @@ import android.test.AndroidTestCase;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @author keishin.yokomaku
+ * @author KeithYokoma
  * @since 2014/04/14
  */
 public class EligorTest extends AndroidTestCase {

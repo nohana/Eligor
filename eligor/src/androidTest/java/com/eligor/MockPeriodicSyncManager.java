@@ -6,7 +6,7 @@ import android.accounts.Account;
 import android.os.Bundle;
 
 /**
- * @author keishin.yokomaku
+ * @author KeithYokoma
  * @since 2014/04/14
  */
 public class MockPeriodicSyncManager extends AbstractPeriodicSyncManager {
