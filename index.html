@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Eligor by nohana</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Eligor</h1>
+        <p class="header">Thin wrapper for managing periodic sync with AbstractThreadedSyncAdapter and ContentResolver.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/nohana/Eligor/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/nohana/Eligor/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/nohana/Eligor">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/nohana">nohana</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="eligor" class="anchor" href="#eligor"><span class="octicon octicon-link"></span></a>Eligor</h1>
+
+<p>Thin wrapper for managing periodic sync with ContentResolver.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="initialize-and-register-periodicsyncmanager" class="anchor" href="#initialize-and-register-periodicsyncmanager"><span class="octicon octicon-link"></span></a>Initialize and register PeriodicSyncManager</h3>
+
+<p>Initialize <code>Eligor</code> at <code>Application#onCreate()</code> in your implementation.</p>
+
+<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyApp</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+
+        <span class="n">Eligor</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span> <span class="c1">// sync period is set by default as every 1sec</span>
+
+        <span class="n">Eligor</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">registerPeriodicSyncManager</span><span class="o">(</span><span class="k">new</span> <span class="n">PeriodicSyncManager</span><span class="o">(</span><span class="k">new</span> <span class="n">Account</span><span class="o">(</span><span class="s">"account_name"</span><span class="o">,</span> <span class="s">"account_type"</span><span class="o">),</span> <span class="s">"authority"</span><span class="o">));</span> <span class="c1">// register manager</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTerminate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Eligor</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onTerminate</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<h3>
+<a name="deal-with-sync-manager" class="anchor" href="#deal-with-sync-manager"><span class="octicon octicon-link"></span></a>Deal with sync manager</h3>
+
+<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Eligor</span> <span class="n">mEligor</span> <span class="o">=</span> <span class="n">Eligor</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span> <span class="c1">// you may inject the instance by DI container using Provider.</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_my_sample</span><span class="o">)</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSyncButtonClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mEligor</span><span class="o">.</span><span class="na">requestSync</span><span class="o">();</span> <span class="c1">// start provider sync manually</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<h2>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>Via gradle.</p>
+
+<div class="highlight highlight-groovy"><pre><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">compile</span> <span class="s1">'jp.co.nohana:Eligor:1.0.0'</span>
+<span class="o">}</span>
+</pre></div>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright (C) 2014 nohana, Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
+</code></pre>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
