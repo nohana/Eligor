@@ -27,8 +27,8 @@ import android.os.Bundle;
  * @version 1.0.0
  */
 @SuppressWarnings("unused")
-public class PeriodicSyncManager extends AbstractPeriodicSyncManager {
-    public PeriodicSyncManager(@NotNull Account account, @NotNull String authority) {
+public class SimplePeriodicSyncManager extends AbstractPeriodicSyncManager {
+    public SimplePeriodicSyncManager(@NotNull Account account, @NotNull String authority) {
         super(account, authority);
     }
 

@@ -15,7 +15,7 @@
 package com.eligor.sample;
 
 import com.eligor.Eligor;
-import com.eligor.PeriodicSyncManager;
+import com.eligor.SimplePeriodicSyncManager;
 
 import android.accounts.Account;
 import android.os.Bundle;
@@ -29,6 +29,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mEligor.registerPeriodicSyncManager(new PeriodicSyncManager(new Account("account_name", "account_type"), "authority"));
+        mEligor.registerPeriodicSyncManager(new SimplePeriodicSyncManager(new Account("account_name", "account_type"), "authority"));
     }
 }
