@@ -17,6 +17,7 @@ package com.eligor;
 import org.jetbrains.annotations.NotNull;
 
 import android.accounts.Account;
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -162,6 +163,7 @@ public class PreferencedPeriodicSyncManager extends AbstractPeriodicSyncManager 
         return flag > FLAG_NOT_SYNCABLE; // according to the ContentResolver javadoc note.
     }
 
+    @SuppressLint("NewApi") // it's ok to suppress lint that we known which to call for the api version
     private void applyEdit(SharedPreferences.Editor editor) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD) {
             editor.commit();
