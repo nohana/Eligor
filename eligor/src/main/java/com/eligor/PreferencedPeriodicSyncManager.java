@@ -14,6 +14,7 @@ import android.os.Bundle;
  * @since 1.1.0
  * @version 1.0.0
  */
+@SuppressWarnings("unused")
 public class PreferencedPeriodicSyncManager extends AbstractPeriodicSyncManager {
     private static final String KEY_PERIOD = "period";
     private static final String KEY_ENABLED = "enabled";
@@ -40,7 +41,7 @@ public class PreferencedPeriodicSyncManager extends AbstractPeriodicSyncManager 
         boolean enabled = mPreferences.getBoolean(KEY_ENABLED, mDefaultEnabled);
         if (enabled) {
             applyEdit(mPreferences.edit().putInt(KEY_PERIOD, period));
-            ContentResolver.addPeriodicSync(getAccount(), getAuthority(), new Bundle(), period);
+            ContentResolver.addPeriodicSync(getAccount(), getAuthority(), args, period);
         }
     }
 
