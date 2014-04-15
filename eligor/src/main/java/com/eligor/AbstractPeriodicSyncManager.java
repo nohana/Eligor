@@ -32,17 +32,28 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
     private final Account mAccount;
     private final String mAuthority;
 
+    /**
+     * Create a new instance of the {@link com.eligor.IPeriodicSyncManager} with associated {@link android.accounts.Account} and authority.
+     * @param account associated account of the sync.
+     * @param authority associated provider authority of the sync.
+     */
     /* package */ AbstractPeriodicSyncManager(@NotNull Account account, @NotNull String authority) {
         mAccount = account;
         mAuthority = authority;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @NotNull
     @Override
     public Account getAccount() {
         return mAccount;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @NotNull
     @Override
     public String getAuthority() {
