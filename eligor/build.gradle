@@ -20,7 +20,7 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:19.+'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
 }
 
 android.libraryVariants.all { variant ->
@@ -39,5 +39,4 @@ apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn
 
 afterEvaluate {
     androidJavadocs.classpath += files(android.plugin.runtimeJarList)
-    androidJavadocs.classpath += files("libs/annotations.jar")
 }

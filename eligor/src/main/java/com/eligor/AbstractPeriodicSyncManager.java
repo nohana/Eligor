@@ -14,9 +14,9 @@
  */
 package com.eligor;
 
-import org.jetbrains.annotations.NotNull;
-
 import android.accounts.Account;
+
+import javax.annotation.Nonnull;
 
 /**
  * Skeleton class for the convenience to implement {@link com.eligor.IPeriodicSyncManager}.
@@ -37,7 +37,7 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
      * @param account associated account of the sync.
      * @param authority associated provider authority of the sync.
      */
-    /* package */ AbstractPeriodicSyncManager(@NotNull Account account, @NotNull String authority) {
+    /* package */ AbstractPeriodicSyncManager(@Nonnull Account account, @Nonnull String authority) {
         mAccount = account;
         mAuthority = authority;
     }
@@ -45,7 +45,7 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
     /**
      * {@inheritDoc}
      */
-    @NotNull
+    @Nonnull
     @Override
     public Account getAccount() {
         return mAccount;
@@ -54,7 +54,7 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
     /**
      * {@inheritDoc}
      */
-    @NotNull
+    @Nonnull
     @Override
     public String getAuthority() {
         return mAuthority;

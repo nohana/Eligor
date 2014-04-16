@@ -14,10 +14,10 @@
  */
 package com.eligor;
 
-import org.jetbrains.annotations.NotNull;
-
 import android.accounts.Account;
 import android.os.Bundle;
+
+import javax.annotation.Nonnull;
 
 /**
  * Interface to deal with the wrapper of periodic sync manager.
@@ -132,11 +132,11 @@ public interface IPeriodicSyncManager {
      * Returns {@link android.accounts.Account} that is associated for the periodic sync of the auhtority.
      * @return an account. May not be null.
      */
-    public @NotNull Account getAccount();
+    public @Nonnull Account getAccount();
 
     /**
      * Returns provider authority for the periodic sync.
      * @return an authority. May not be null.
      */
-    public @NotNull String getAuthority();
+    public @Nonnull String getAuthority();
 }

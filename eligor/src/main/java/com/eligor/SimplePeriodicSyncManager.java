@@ -14,11 +14,11 @@
  */
 package com.eligor;
 
-import org.jetbrains.annotations.NotNull;
-
 import android.accounts.Account;
 import android.content.ContentResolver;
 import android.os.Bundle;
+
+import javax.annotation.Nonnull;
 
 /**
  * Concrete class that is an implementation of {@link com.eligor.IPeriodicSyncManager}.
@@ -31,7 +31,7 @@ public class SimplePeriodicSyncManager extends AbstractPeriodicSyncManager {
     /**
      * {@inheritDoc}
      */
-    public SimplePeriodicSyncManager(@NotNull Account account, @NotNull String authority) {
+    public SimplePeriodicSyncManager(@Nonnull Account account, @Nonnull String authority) {
         super(account, authority);
     }
 

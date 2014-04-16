@@ -14,13 +14,13 @@
  */
 package com.eligor;
 
-import org.jetbrains.annotations.Nullable;
-
 import android.os.Bundle;
 import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 /**
  * Contract of the content provider periodic sync control.
