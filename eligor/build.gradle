@@ -20,8 +20,11 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:19.+'
-    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    compile 'com.google.code.findbugs:jsr305:2.0.3'
 }
+
+apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
+
 
 android.libraryVariants.all { variant ->
     def name = variant.buildType.name
@@ -35,8 +38,7 @@ android.libraryVariants.all { variant ->
     }
 }
 
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
-
 afterEvaluate {
-    androidJavadocs.classpath += files(android.plugin.runtimeJarList)
+    androidJavadocs.classpath += project.files(android.plugin.getRuntimeJarList().join(File.pathSeparator))
+    androidJavadocs.classpath += project.android.libraryVariants.toList().first().javaCompile.classpath
 }

@@ -1,16 +1,16 @@
 package com.eligor;
 
-import org.jetbrains.annotations.NotNull;
-
 import android.accounts.Account;
 import android.os.Bundle;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author KeithYokoma
  * @since 2014/04/14
  */
 public class MockPeriodicSyncManager extends AbstractPeriodicSyncManager {
-    public MockPeriodicSyncManager(@NotNull Account account, @NotNull String authority) {
+    public MockPeriodicSyncManager(@Nonnull Account account, @Nonnull String authority) {
         super(account, authority);
     }
 
