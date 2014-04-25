@@ -14,6 +14,7 @@
  */
 package com.eligor;
 
+import android.content.ContentResolver;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -76,6 +77,14 @@ public final class Eligor {
      */
     public static synchronized void destroy() {
         sInstance = null;
+    }
+
+    /**
+     * Checks the settings whether the master automatic periodic sync is enabled or not on the phone.
+     * @return true if enabled on the master setting, false otherwise.
+     */
+    public boolean isMasterSyncEnabled() {
+        return ContentResolver.getMasterSyncAutomatically();
     }
 
     /**
