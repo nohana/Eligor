@@ -31,8 +31,8 @@ public class SimplePeriodicSyncManager extends AbstractPeriodicSyncManager {
     /**
      * {@inheritDoc}
      */
-    public SimplePeriodicSyncManager(@Nonnull Account account, @Nonnull String authority) {
-        super(account, authority);
+    public SimplePeriodicSyncManager(@Nonnull Account account, @Nonnull String authority, @Nonnull FallbackRunnable fallbackRunnable) {
+        super(account, authority, fallbackRunnable);
     }
 
     /**

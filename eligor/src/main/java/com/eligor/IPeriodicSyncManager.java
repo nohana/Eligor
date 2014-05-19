@@ -139,4 +139,10 @@ public interface IPeriodicSyncManager {
      * @return an authority. May not be null.
      */
     public @Nonnull String getAuthority();
+
+    /**
+     *
+     * @return
+     */
+    public @Nonnull FallbackRunnable getFallbackRunnable();
 }

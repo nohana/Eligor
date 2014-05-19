@@ -42,8 +42,8 @@ public class PreferencedPeriodicSyncManager extends AbstractPeriodicSyncManager 
     /**
      * {@inheritDoc}
      */
-    public PreferencedPeriodicSyncManager(Context context, @Nonnull Account account, @Nonnull String authority, boolean defaultEnabled) {
-        super(account, authority);
+    public PreferencedPeriodicSyncManager(Context context, @Nonnull Account account, @Nonnull String authority, @Nonnull FallbackRunnable fallbackRunnable, boolean defaultEnabled) {
+        super(account, authority, fallbackRunnable);
         mPreferences = context.getSharedPreferences(authority, Context.MODE_PRIVATE);
         mDefaultEnabled = defaultEnabled;
     }

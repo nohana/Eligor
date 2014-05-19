@@ -9,8 +9,15 @@
     tools:context="com.eligor.sample.MainActivity">
 
     <TextView
+        android:id="@+id/hello_world"
         android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hello_world"
+        android:text="Request Sync"
+        android:onClick="onRequestSync"/>
 </RelativeLayout>

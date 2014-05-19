@@ -31,15 +31,18 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
 
     private final Account mAccount;
     private final String mAuthority;
+    private final FallbackRunnable mFallbackRunnable;
 
     /**
      * Create a new instance of the {@link com.eligor.IPeriodicSyncManager} with associated {@link android.accounts.Account} and authority.
      * @param account associated account of the sync, may not be null.
      * @param authority associated provider authority of the sync, may not be null.
+     * @param fallbackRunnable fallback runnable that is executed if the master sync is disabled.
      */
-    /* package */ AbstractPeriodicSyncManager(@Nonnull Account account, @Nonnull String authority) {
+    /* package */ AbstractPeriodicSyncManager(@Nonnull Account account, @Nonnull String authority, @Nonnull FallbackRunnable fallbackRunnable) {
         mAccount = account;
         mAuthority = authority;
+        mFallbackRunnable = fallbackRunnable;
     }
 
     /**
@@ -58,5 +61,11 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
     @Override
     public String getAuthority() {
         return mAuthority;
+    }
+
+    @Nonnull
+    @Override
+    public FallbackRunnable getFallbackRunnable() {
+        return mFallbackRunnable;
     }
 }

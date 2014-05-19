@@ -15,11 +15,14 @@
 package com.eligor.sample;
 
 import com.eligor.Eligor;
+import com.eligor.FallbackRunnable;
 import com.eligor.SimplePeriodicSyncManager;
 
 import android.accounts.Account;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.View;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -29,6 +32,21 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mEligor.registerPeriodicSyncManager(new SimplePeriodicSyncManager(new Account("account_name", "account_type"), "authority"));
+        mEligor.registerPeriodicSyncManager(new SimplePeriodicSyncManager(new Account("account_name", "account_type"), "authority", new FallbackRunnable() {
+
+            @Override
+            public void onPerformSync(Bundle args) {
+                Log.v("sample", "dispatched");
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    Log.v("sample", "interrupted");
+                }
+            }
+        }));
+    }
+
+    public void onRequestSync(View view) {
+        mEligor.requestSync(true);
     }
 }

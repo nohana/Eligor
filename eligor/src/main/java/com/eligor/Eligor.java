@@ -198,8 +198,16 @@ public final class Eligor {
      * Request on demand sync for all of the registered {@link com.eligor.IPeriodicSyncManager}.
      */
     public void requestSync() {
+        requestSync(false);
+    }
+
+    public void requestSync(boolean enableFallback) {
         for (IPeriodicSyncManager manager : mSyncManagers.values()) {
-            manager.requestSync();
+            if (isMasterSyncEnabled()) {
+                manager.requestSync();
+            } else if (enableFallback) {
+                FallbackRunnableExecutor.process(new FallbackSyncDispatcher(manager, null));
+            }
         }
     }
 
@@ -208,8 +216,16 @@ public final class Eligor {
      * @param args extra arguments for the {@link android.content.AbstractThreadedSyncAdapter}.
      */
     public void requestSync(Bundle args) {
+        requestSync(args, false);
+    }
+
+    public void requestSync(Bundle args, boolean enableFallbak) {
         for (IPeriodicSyncManager manager : mSyncManagers.values()) {
-            manager.requestSync(args);
+            if (isMasterSyncEnabled()) {
+                manager.requestSync(args);
+            } else if (enableFallbak) {
+                FallbackRunnableExecutor.process(new FallbackSyncDispatcher(manager, args));
+            }
         }
     }
 
@@ -218,12 +234,20 @@ public final class Eligor {
      * @param authority the periodic sync manager is associated with.
      */
     public void requestSync(String authority) {
+        requestSync(authority, false);
+    }
+
+    public void requestSync(String authority, boolean enableFallback) {
         IPeriodicSyncManager manager = mSyncManagers.get(authority);
         if (manager == null) {
             Log.i(TAG, "unknown authority for the request. ensure to call registerPeriodicSyncManager(IPeriodicSyncManager) first.");
             return;
         }
-        manager.requestSync();
+        if (isMasterSyncEnabled()) {
+            manager.requestSync();
+        } else if (enableFallback) {
+            FallbackRunnableExecutor.process(new FallbackSyncDispatcher(manager, null));
+        }
     }
 
     /**
@@ -232,12 +256,20 @@ public final class Eligor {
      * @param args extra arguments for the {@link android.content.AbstractThreadedSyncAdapter}.
      */
     public void requestSync(String authority, Bundle args) {
+        requestSync(authority, args, false);
+    }
+
+    public void requestSync(String authority, Bundle args, boolean enableFallback) {
         IPeriodicSyncManager manager = mSyncManagers.get(authority);
         if (manager == null) {
             Log.i(TAG, "unknown authority for the request. ensure to call registerPeriodicSyncManager(IPeriodicSyncManager) first.");
             return;
         }
-        manager.requestSync(args);
+        if (isMasterSyncEnabled()) {
+            manager.requestSync(args);
+        } else if (enableFallback) {
+            FallbackRunnableExecutor.process(new FallbackSyncDispatcher(manager, args));
+        }
     }
 
     /**
