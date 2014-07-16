@@ -52,7 +52,7 @@ Via gradle.
 
 ```groovy
 dependencies {
-    compile 'jp.co.nohana:Eligor:1.0.0'
+    compile 'jp.co.nohana:Eligor:1.2.0'
 }
 ```
 
