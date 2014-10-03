@@ -1,5 +1,6 @@
 Eligor
 ======
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/nohana/Eligor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Thin wrapper for managing periodic sync with ContentResolver.
 
