@@ -16,12 +16,11 @@ package com.eligor;
 
 import android.content.ContentResolver;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.annotation.Nullable;
 
 /**
  * Contract of the content provider periodic sync control.

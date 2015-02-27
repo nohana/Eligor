@@ -22,7 +22,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
-import javax.annotation.Nonnull;
+import android.support.annotation.NonNull;
 
 /**
  * Concrete class that is an implementation of {@link com.eligor.IPeriodicSyncManager}.
@@ -42,7 +42,7 @@ public class PreferencedPeriodicSyncManager extends AbstractPeriodicSyncManager 
     /**
      * {@inheritDoc}
      */
-    public PreferencedPeriodicSyncManager(Context context, @Nonnull Account account, @Nonnull String authority, @Nonnull FallbackRunnable fallbackRunnable, boolean defaultEnabled) {
+    public PreferencedPeriodicSyncManager(Context context, @NonNull Account account, @NonNull String authority, @NonNull FallbackRunnable fallbackRunnable, boolean defaultEnabled) {
         super(account, authority, fallbackRunnable);
         mPreferences = context.getSharedPreferences(authority, Context.MODE_PRIVATE);
         mDefaultEnabled = defaultEnabled;
