@@ -1,8 +1,7 @@
 package com.eligor;
 
 import android.os.Bundle;
-
-import javax.annotation.Nullable;
+import android.support.annotation.Nullable;
 
 /**
  * @author keishin.yokomaku

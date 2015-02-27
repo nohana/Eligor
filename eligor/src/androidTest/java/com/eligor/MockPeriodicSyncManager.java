@@ -2,16 +2,20 @@ package com.eligor;
 
 import android.accounts.Account;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import javax.annotation.Nonnull;
 
 /**
  * @author KeithYokoma
  * @since 2014/04/14
  */
 public class MockPeriodicSyncManager extends AbstractPeriodicSyncManager {
-    public MockPeriodicSyncManager(@Nonnull Account account, @Nonnull String authority) {
-        super(account, authority);
+    public MockPeriodicSyncManager(@NonNull Account account, @NonNull String authority) {
+        super(account, authority, new FallbackRunnable() {
+            @Override
+            public void onPerformSync(@Nullable Bundle extras) {}
+        });
     }
 
     @Override

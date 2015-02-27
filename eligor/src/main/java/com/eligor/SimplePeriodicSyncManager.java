@@ -18,7 +18,7 @@ import android.accounts.Account;
 import android.content.ContentResolver;
 import android.os.Bundle;
 
-import javax.annotation.Nonnull;
+import android.support.annotation.NonNull;
 
 /**
  * Concrete class that is an implementation of {@link com.eligor.IPeriodicSyncManager}.
@@ -31,7 +31,7 @@ public class SimplePeriodicSyncManager extends AbstractPeriodicSyncManager {
     /**
      * {@inheritDoc}
      */
-    public SimplePeriodicSyncManager(@Nonnull Account account, @Nonnull String authority, @Nonnull FallbackRunnable fallbackRunnable) {
+    public SimplePeriodicSyncManager(@NonNull Account account, @NonNull String authority, @NonNull FallbackRunnable fallbackRunnable) {
         super(account, authority, fallbackRunnable);
     }
 

@@ -2,8 +2,8 @@ package com.eligor;
 
 import android.os.Bundle;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * @author keishin.yokomaku
@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
     private final IPeriodicSyncManager mManager;
     private final Bundle mExtras;
 
-    public FallbackSyncDispatcher(@Nonnull IPeriodicSyncManager manager, @Nullable Bundle extras) {
+    public FallbackSyncDispatcher(@NonNull IPeriodicSyncManager manager, @Nullable Bundle extras) {
         mManager = manager;
         mExtras = extras;
     }

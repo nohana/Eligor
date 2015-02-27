@@ -15,8 +15,7 @@
 package com.eligor;
 
 import android.accounts.Account;
-
-import javax.annotation.Nonnull;
+import android.support.annotation.NonNull;
 
 /**
  * Skeleton class for the convenience to implement {@link com.eligor.IPeriodicSyncManager}.
@@ -39,7 +38,7 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
      * @param authority associated provider authority of the sync, may not be null.
      * @param fallbackRunnable fallback runnable that is executed if the master sync is disabled.
      */
-    /* package */ AbstractPeriodicSyncManager(@Nonnull Account account, @Nonnull String authority, @Nonnull FallbackRunnable fallbackRunnable) {
+    /* package */ AbstractPeriodicSyncManager(@NonNull Account account, @NonNull String authority, @NonNull FallbackRunnable fallbackRunnable) {
         mAccount = account;
         mAuthority = authority;
         mFallbackRunnable = fallbackRunnable;
@@ -48,7 +47,7 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
     /**
      * {@inheritDoc}
      */
-    @Nonnull
+    @NonNull
     @Override
     public Account getAccount() {
         return mAccount;
@@ -57,13 +56,13 @@ abstract class AbstractPeriodicSyncManager implements IPeriodicSyncManager {
     /**
      * {@inheritDoc}
      */
-    @Nonnull
+    @NonNull
     @Override
     public String getAuthority() {
         return mAuthority;
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public FallbackRunnable getFallbackRunnable() {
         return mFallbackRunnable;
